@@ -13,6 +13,12 @@
     "./dist/index.js": "./dist/index.js",
     "./dist/index.esm.js": "./dist/index.esm.js"
   },
+  "keywords": [
+    "wangEditor",
+    "富文本编辑器",
+    "富文本",
+    "react"
+  ],
   "directories": {
     "lib": "dist",
     "test": "__tests__"
@@ -36,7 +42,8 @@
     "dev-watch": "cross-env NODE_ENV=development rollup -c rollup.config.js -w",
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
     "dev-size-stats": "cross-env NODE_ENV=development:size_stats rollup -c rollup.config.js",
-    "size-stats": "cross-env NODE_ENV=production:size_stats rollup -c rollup.config.js"
+    "size-stats": "cross-env NODE_ENV=production:size_stats rollup -c rollup.config.js",
+    "release": "release-it"
   },
   "bugs": {
     "url": "https://github.com/wangeditor-team/wangEditor-for-react/issues"
@@ -72,6 +79,7 @@
     "postcss": "^8.3.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "release-it": "^14.11.8",
     "rollup": "^2.59.0",
     "rollup-plugin-cleanup": "^3.2.1",
     "rollup-plugin-copy": "^3.4.0",

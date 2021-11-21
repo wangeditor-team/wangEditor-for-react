@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
 
 jobs:
   publish-npm:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          registry-url: https://registry.npmjs.org/
+          registry-url: htt, ps://registry.npmjs.org/
       - run: npm i
       - run: npm run test
       - run: npm run build

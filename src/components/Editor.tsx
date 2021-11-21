@@ -4,11 +4,11 @@
  */
 
 import React, { useRef, useEffect } from 'react'
-import * as wangEditor from '@wangeditor/editor'
+import {SlateDescendant, IEditorConfig, createEditor } from '@wangeditor/editor'
 
 interface IProps {
-  defaultContent: wangEditor.SlateDescendant[]
-  defaultConfig: Partial<wangEditor.IEditorConfig>
+  defaultContent: SlateDescendant[]
+  defaultConfig: Partial<IEditorConfig>
   mode?: string
   style?: object
 }
@@ -20,7 +20,7 @@ function EditorComponent(props: Partial<IProps>) {
   useEffect(() => {
     if (ref.current == null) return
 
-    wangEditor.createEditor({
+    createEditor({
       selector: ref.current,
       config: defaultConfig,
       content: defaultContent,

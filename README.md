@@ -27,9 +27,7 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 ```
 ## 开发
 安装依赖
-``
 npm install
-```
 调试
 - 打包 `yarn dev` 或 `yarn build`
 - 或运行 example `yarn example`

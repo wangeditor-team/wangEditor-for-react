@@ -1,5 +1,9 @@
 # wangEditor for React
 
+<!-- Badge -->
+![MIT License](https://img.shields.io/badge/License-MIT-blue)
+![jest badge](https://img.shields.io/badge/unit%20test-jest-yellowgreen)
+
 [wangEditor](https://www.wangeditor.com/v5/) React 组件。
 
 ## 使用

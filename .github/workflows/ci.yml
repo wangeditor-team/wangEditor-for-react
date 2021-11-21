@@ -1,9 +1,9 @@
-name: npm publish
+name: CI
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
 
 jobs:
   publish-npm:
@@ -16,7 +16,3 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm i
       - run: npm run test
-      - run: npm run build
-      - run: npm publish --access=public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

@@ -8,7 +8,7 @@
 
 ## 使用
 
-详情参考[文档](https://www.wangeditor.com/v5/guide/for-frame.html#react)。
+详情参考[react使用文档](https://www.wangeditor.com/v5/guide/for-frame.html#react)。
 
 1. 安装依赖
 

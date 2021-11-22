@@ -13,15 +13,17 @@
 1. 安装依赖
 
 ```shell
-npm install @wangeditor/editor-for-react --save
-# 或者 yarn add @wangeditor/editor-for-react
+yarn add @wangeditor/editor-for-react
+# 或者npm install @wangeditor/editor-for-react --save
+
 ```
 
 2. 安装核心包
 
 ```shell
-npm install @wangeditor/editor --save
-# 或者 yarn add @wangeditor/editor
+yarn add @wangeditor/editor
+
+# 或者 npm install @wangeditor/editor --save
 ```
 
 3. 导入组件

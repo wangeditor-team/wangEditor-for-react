@@ -26,10 +26,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.com/"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wangeditor-team/wangEditor-for-react.git"

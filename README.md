@@ -1,5 +1,7 @@
 # wangEditor for React
 
+[English documentation](./README-en.md)
+
 <!-- Badge -->
 ![MIT License](https://img.shields.io/badge/License-MIT-blue)
 ![jest badge](https://img.shields.io/badge/unit%20test-jest-yellowgreen)
@@ -9,7 +11,7 @@
 
 ## 安装
 
-1. 安装依赖
+1. 安装组件包
 
 ```shell
 yarn add @wangeditor/editor-for-react

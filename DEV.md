@@ -6,7 +6,9 @@
 - `build` 打包配置
 ## 开发
 `npm run dev`进行开发版本的编译
+
 `npm run example`启动本地服务，使用example目录。
+
 `npm run test`单元测试，使用test目录。
 ## 构建
 `npm run build`构建代码

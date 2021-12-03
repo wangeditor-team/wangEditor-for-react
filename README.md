@@ -1,10 +1,10 @@
 # wangEditor for React
 
-[English documentation](./README-en.md)
-
 <!-- Badge -->
 ![MIT License](https://img.shields.io/badge/License-MIT-blue)
 ![jest badge](https://img.shields.io/badge/unit%20test-jest-yellowgreen)
+
+[English documentation](./README-en.md)
 
 ## 介绍
 基于[wangEditor](https://www.wangeditor.com/v5/) 封装的React组件。

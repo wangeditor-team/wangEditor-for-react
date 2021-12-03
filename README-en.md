@@ -1,9 +1,10 @@
 # wangEditor for React
-[中文文档](./README.md)
 
 <!-- Badge -->
 ![MIT License](https://img.shields.io/badge/License-MIT-blue)
 ![jest badge](https://img.shields.io/badge/unit%20test-jest-yellowgreen)
+
+[中文文档](./README.md)
 
 ## Introduction
 An react component based on the [wangEditor](https://www.wangeditor.com/v5/en/guide/for-frame.html#attention) 

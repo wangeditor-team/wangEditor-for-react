@@ -29,6 +29,7 @@ yarn add @wangeditor/editor
 
 ```ts
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
+```
 
 ## Usage
 For details, please refer to [wangEditor react usage document](https://www.wangeditor.com/v5/en/guide/for-frame.html#react)

@@ -1,6 +1,6 @@
 {
   "name": "@wangeditor/editor-for-react",
-  "version": "0.6.16",
+  "version": "0.6.17",
   "description": "wangEditor component for React",
   "author": "hahaaha <390519764@qq.com>",
   "contributors": [],
@@ -46,7 +46,7 @@
   },
   "peerDependencies": {
     "@wangeditor/core": "^0.12.7",
-    "@wangeditor/editor": "^0.13.3",
+    "@wangeditor/editor": "^0.13.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

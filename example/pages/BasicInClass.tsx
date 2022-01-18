@@ -63,6 +63,8 @@ class Basic extends Component {
       { type: 'paragraph', children: [{ text: '' }] },
     ]
 
+    // const defaultHtml = '<p>hello&nbsp;<strong>world</strong>&nbsp;3</p><p><br></p>'
+
     // ----------------------- toolbar config -----------------------
     const toolbarConfig = {
       // 可配置 toolbarKeys: [...]
@@ -90,6 +92,7 @@ class Basic extends Component {
           <Editor
             defaultConfig={editorConfig}
             defaultContent={defaultContent}
+            // defaultHtml={defaultHtml}
             mode="default"
             style={{ height: '500px' }}
           />

@@ -28,10 +28,12 @@ function Basic() {
   // 继续补充其他配置~
 
   // ----------------------- editor content -----------------------
-  const defaultContent = [
-    { type: 'paragraph', children: [{ text: 'class 组件 - 基本使用' }] },
-    { type: 'paragraph', children: [{ text: '' }] },
-  ]
+  // const defaultContent = [
+  //   { type: 'paragraph', children: [{ text: 'Hooks 组件 - 基本使用' }] },
+  //   { type: 'paragraph', children: [{ text: '' }] },
+  // ]
+
+  const defaultHtml = '<p>hello&nbsp;<strong>world</strong>&nbsp;</p><p>通过&nbsp;HTML&nbsp;设置内容</p>'
 
   // ----------------------- toolbar config -----------------------
   const toolbarConfig = {
@@ -84,7 +86,8 @@ function Basic() {
         {/* 渲染 editor */}
         <Editor
           defaultConfig={editorConfig}
-          defaultContent={defaultContent}
+          // defaultContent={defaultContent}
+          defaultHtml={defaultHtml}
           mode="default"
           style={{ height: '500px' }}
         />

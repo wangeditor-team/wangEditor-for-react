@@ -3,7 +3,13 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - 'main'
+      - 'master'
+      - 'dev'
+      - 'feature-*'
+      - 'fix-*'
+      - 'hotfix-*'
+      - 'refactor-*'
 
 jobs:
   publish-npm:
@@ -14,7 +20,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm i
-      - run: npm run test
-      - run: npm run build
+      - run: yarn install
+      - run: yarn test
+      - run: yarn build
       - run: npm config get registry

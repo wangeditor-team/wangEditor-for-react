@@ -20,10 +20,12 @@ function Basic() {
 
   // ----------------------- editor content -----------------------
   const defaultContent = [
-    { type: 'paragraph', children: [{ text: 'class 组件 - 精简模式' }] },
+    { type: 'paragraph', children: [{ text: 'Hooks 组件 - 精简模式' }] },
     { type: 'paragraph', children: [{ text: '简化 toolbar 和 hoverbar' }] },
     { type: 'paragraph', children: [{ text: '' }] },
   ]
+
+  // const defaultHtml = '<p>hello&nbsp;<strong>world</strong>&nbsp;1</p><p><br></p>'
 
   // ----------------------- toolbar config -----------------------
   const toolbarConfig = {
@@ -56,6 +58,7 @@ function Basic() {
         <Editor
           defaultConfig={editorConfig}
           defaultContent={defaultContent}
+          // defaultHtml={defaultHtml}
           mode="simple"
           style={{ height: '500px' }}
         />

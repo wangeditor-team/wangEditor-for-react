@@ -6,7 +6,7 @@ module.exports = {
     requireBranch: "main",
   },
   hooks: {
-    "before:init": ["npm run test"],
+    "before:init": ["yarn test"],
   },
   npm: {
     publish: false,

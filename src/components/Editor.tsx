@@ -11,7 +11,7 @@ interface IProps {
   defaultHtml?: string
   defaultConfig: Partial<IEditorConfig>
   mode?: string
-  style?: object
+  style?: React.CSSProperties
 }
 
 function EditorComponent(props: Partial<IProps>) {

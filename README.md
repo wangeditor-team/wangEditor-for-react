@@ -36,3 +36,17 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
 详情参考[wangEditor react使用文档](https://www.wangeditor.com/v5/guide/for-frame.html#react)。
 
+### 在Next.js下使用
+```js
+import dynamic  from 'next/dynamic'
+const WangEditor = dynamic(
+  // 引入对应的组件 设置的组件参考上面的wangEditor react使用文档
+  () => import('../components/myEditor'),
+  {ssr: false}
+)
+
+export default function Home() {
+  return <WangEditor />
+}
+```
+使用案例可以参考[wangeditorV5-nextjs-demo](https://github.com/hahaaha/wangeditorV5-nextjs-demo)

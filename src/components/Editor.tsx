@@ -4,7 +4,7 @@
  */
 
 import React, { useRef, useEffect } from 'react'
-import {SlateDescendant, IEditorConfig, createEditor } from '@wangeditor/editor'
+import {SlateDescendant, IEditorConfig, createEditor, IDomEditor } from '@wangeditor/editor'
 
 interface IProps {
   defaultContent?: SlateDescendant[]
@@ -12,15 +12,16 @@ interface IProps {
   defaultConfig: Partial<IEditorConfig>
   mode?: string
   style?: object
+  editor?: IDomEditor | null
 }
 
 function EditorComponent(props: Partial<IProps>) {
-  const { defaultContent = [], defaultHtml = '', defaultConfig = {}, mode = 'default', style = {} } = props
+  const {editor, defaultContent = [], defaultHtml = '', defaultConfig = {}, mode = 'default', style = {} } = props
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (ref.current == null) return
-
+    if (editor == null)
     createEditor({
       selector: ref.current,
       config: defaultConfig,
@@ -28,7 +29,7 @@ function EditorComponent(props: Partial<IProps>) {
       html: defaultHtml,
       mode,
     })
-  }, [])
+  }, [editor])
 
   return <div style={style} ref={ref}></div>
 }

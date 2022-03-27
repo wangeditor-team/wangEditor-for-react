@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import {SlateDescendant, IEditorConfig, createEditor, IDomEditor } from '@wangeditor/editor'
 
 interface IProps {
@@ -12,23 +12,37 @@ interface IProps {
   defaultConfig: Partial<IEditorConfig>
   mode?: string
   style?: React.CSSProperties
-  editor?: IDomEditor | null
 }
 
 function EditorComponent(props: Partial<IProps>) {
-  const {editor, defaultContent = [], defaultHtml = '', defaultConfig = {}, mode = 'default', style = {} } = props
+  const { defaultContent = [], defaultHtml = '', defaultConfig = {}, mode = 'default', style = {} } = props
   const ref = useRef<HTMLDivElement>(null)
+  const [editor, setEditor] = useState<IDomEditor | null>(null)
+  
+  const handleDestroyed = (editor: IDomEditor) => {
+    const { onDestroyed } = defaultConfig
+    setEditor(null)
+    if(onDestroyed) {
+      onDestroyed(editor)
+    }
+  }
+  
 
   useEffect(() => {
     if (ref.current == null) return
-    if (editor == null)
-    createEditor({
+    if (editor != null) return
+
+    const newEditor = createEditor({
       selector: ref.current,
-      config: defaultConfig,
+      config: {
+        ...defaultConfig,
+        onDestroyed: handleDestroyed,
+      },
       content: defaultContent,
       html: defaultHtml,
       mode,
     })
+    setEditor(newEditor)
   }, [editor])
 
   return <div style={style} ref={ref}></div>

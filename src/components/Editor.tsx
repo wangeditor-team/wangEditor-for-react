@@ -3,8 +3,8 @@
  * @author wangfupeng
  */
 
-import React, { useRef, useEffect } from 'react'
-import {SlateDescendant, IEditorConfig, createEditor } from '@wangeditor/editor'
+import React, { useRef, useEffect, useState } from 'react'
+import {SlateDescendant, IEditorConfig, createEditor, IDomEditor } from '@wangeditor/editor'
 
 interface IProps {
   defaultContent?: SlateDescendant[]
@@ -17,18 +17,33 @@ interface IProps {
 function EditorComponent(props: Partial<IProps>) {
   const { defaultContent = [], defaultHtml = '', defaultConfig = {}, mode = 'default', style = {} } = props
   const ref = useRef<HTMLDivElement>(null)
+  const [editor, setEditor] = useState<IDomEditor | null>(null)
+  
+  const handleDestroyed = (editor: IDomEditor) => {
+    const { onDestroyed } = defaultConfig
+    setEditor(null)
+    if(onDestroyed) {
+      onDestroyed(editor)
+    }
+  }
+  
 
   useEffect(() => {
     if (ref.current == null) return
+    if (editor != null) return
 
-    createEditor({
+    const newEditor = createEditor({
       selector: ref.current,
-      config: defaultConfig,
+      config: {
+        ...defaultConfig,
+        onDestroyed: handleDestroyed,
+      },
       content: defaultContent,
       html: defaultHtml,
       mode,
     })
-  }, [])
+    setEditor(newEditor)
+  }, [editor])
 
   return <div style={style} ref={ref}></div>
 }

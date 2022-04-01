@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom'
 import BasicInHooks from './pages/BasicInHooks'
 import BasicInClass from './pages/BasicInClass'
 import SimpleInHooks from './pages/SimpleInHooks'
+import ValueDemo from './pages/ValueDemo'
 
 function App() {
   const [pageName, setPageName] = useState('')
@@ -23,11 +24,14 @@ function App() {
       <button onClick={() => setPageName('basic-in-hooks')}>basic-in-hooks</button>
       &nbsp;
       <button onClick={() => setPageName('basic-in-class')}>basic-in-class</button>
+      &nbsp;
+      <button onClick={() => setPageName('value-demo')}>value demo</button>
       <hr />
       {/* 按条件显示 demo 页 */}
       {pageName === 'basic-in-hooks' && <BasicInHooks />}
       {pageName === 'basic-in-class' && <BasicInClass />}
       {pageName === 'simple-in-hooks' && <SimpleInHooks />}
+      {pageName === 'value-demo' && <ValueDemo />}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 {
   "name": "@wangeditor/editor-for-react",
-  "version": "0.6.26",
+  "version": "1.0.0",
   "description": "wangEditor component for React",
   "author": "hahaaha <390519764@qq.com>",
   "contributors": [],
@@ -45,8 +45,8 @@
     "url": "https://github.com/wangeditor-team/wangEditor-for-react/issues"
   },
   "peerDependencies": {
-    "@wangeditor/core": ">=0.14.7",
-    "@wangeditor/editor": ">=0.15.6",
+    "@wangeditor/core": ">=1.0.0",
+    "@wangeditor/editor": ">=5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -66,8 +66,8 @@
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
-    "@wangeditor/core": "^0.14.0",
-    "@wangeditor/editor": "^0.14.0",
+    "@wangeditor/core": "^1.0.0",
+    "@wangeditor/editor": "^5.0.0",
     "autoprefixer": "^10.4.0",
     "babel-jest": "^27.3.1",
     "cross-env": "^7.0.3",

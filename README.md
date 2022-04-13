@@ -7,7 +7,7 @@
 [English documentation](./README-en.md)
 
 ## 介绍
-基于[wangEditor](https://www.wangeditor.com/v5/) 封装的React组件。
+基于[wangEditor](https://www.wangeditor.com/) 封装的React组件。
 
 ## 安装
 
@@ -34,7 +34,7 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
 ## 使用
 
-详情参考[wangEditor react使用文档](https://www.wangeditor.com/v5/guide/for-frame.html#react)。
+详情参考[wangEditor react使用文档](https://www.wangeditor.com/v5/for-frame.html#react)。
 
 ### 在Next.js下使用
 ```js

@@ -7,7 +7,7 @@
 [中文文档](./README.md)
 
 ## Introduction
-An react component based on the [wangEditor](https://www.wangeditor.com/v5/en/guide/for-frame.html#attention) 
+An react component based on the [wangEditor](https://www.wangeditor.com/en/v5/for-frame.html#attention)
 
 ## Installation
 1. Install the current component package
@@ -32,4 +32,4 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 ```
 
 ## Usage
-For details, please refer to [wangEditor react usage document](https://www.wangeditor.com/v5/en/guide/for-frame.html#react)
+For details, please refer to [wangEditor react usage document](https://www.wangeditor.com/en/v5/for-frame.html#react)

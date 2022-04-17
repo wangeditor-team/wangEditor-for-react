@@ -95,6 +95,8 @@ function EditorComponent(props: Partial<IProps>) {
   useEffect(() => {
     if (ref.current == null) return
     if (editor != null) return
+    // 防止重复渲染 当编辑器已经创建就不在创建了
+    if (ref.current?.getAttribute('data-w-e-textarea')) return
 
     const newEditor = createEditor({
       selector: ref.current,

@@ -20,6 +20,7 @@ function Basic() {
 
     const editorConfig: Partial<IEditorConfig> = {
         placeholder: '请输入内容...',
+        // readOnly: true, // 只读配置
         // 其他配置...
         readOnly: true, // 只读配置
     }

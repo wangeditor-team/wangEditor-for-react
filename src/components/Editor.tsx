@@ -77,17 +77,18 @@ function EditorComponent(props: Partial<IProps>) {
     if (!isEditorFocused) {
       editor.deselect()
       editor.blur()
-      return
     }
     if (isEditorDisabled) {
       editor.deselect()
       editor.disable()
-      return
     }
-    try {
-      editor.select(JSON.parse(editorSelectionStr)) // 选中原来的位置
-    } catch (ex) {
-      editor.select(SlateEditor.start(editor, [])) // 选中开始
+
+    if(editor.isFocused()) {
+      try {
+        editor.select(JSON.parse(editorSelectionStr)) // 选中原来的位置
+      } catch (ex) {
+        editor.select(SlateEditor.start(editor, [])) // 选中开始
+      }
     }
 
   }, [value])

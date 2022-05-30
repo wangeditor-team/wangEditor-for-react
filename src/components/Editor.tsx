@@ -15,10 +15,11 @@ interface IProps {
   defaultConfig: Partial<IEditorConfig>
   mode?: string
   style?: React.CSSProperties
+  className?: string | undefined;
 }
 
 function EditorComponent(props: Partial<IProps>) {
-  const { defaultContent = [], onCreated, defaultHtml = '', value = '', onChange, defaultConfig = {}, mode = 'default', style = {} } = props
+  const { defaultContent = [], onCreated, defaultHtml = '', value = '', onChange, defaultConfig = {}, mode = 'default', style = {}, className } = props
   const ref = useRef<HTMLDivElement>(null)
   const [editor, setEditor] = useState<IDomEditor | null>(null)
   const [curValue, setCurValue] = useState('')
@@ -114,7 +115,7 @@ function EditorComponent(props: Partial<IProps>) {
     setEditor(newEditor)
   }, [editor])
 
-  return <div style={style} ref={ref}></div>
+  return <div style={style} ref={ref} className={className}></div>
 }
 
 export default EditorComponent

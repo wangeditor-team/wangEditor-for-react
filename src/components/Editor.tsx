@@ -6,41 +6,63 @@
 import React, { useRef, useEffect, useState } from 'react'
 import {SlateDescendant, IEditorConfig, createEditor, IDomEditor, SlateEditor, SlateTransforms } from '@wangeditor/editor'
 
-interface IProps {
+interface IProps extends Omit<Partial<IEditorConfig>, "customAlert" | "decorate" | "customPaste" | "hoverbarKeys" | "EXTEND_CONF" | "MENU_CONF"> {
   defaultContent?: SlateDescendant[]
-  onCreated?: (editor: IDomEditor) => void
   defaultHtml?: string
   value?: string
-  onChange: (editor: IDomEditor) => void
   defaultConfig: Partial<IEditorConfig>
   mode?: string
   style?: React.CSSProperties
 }
 
 function EditorComponent(props: Partial<IProps>) {
-  const { defaultContent = [], onCreated, defaultHtml = '', value = '', onChange, defaultConfig = {}, mode = 'default', style = {} } = props
+  // 通过props传递时
+  // readOnly/autoFocus/maxLength/scroll/配置的优先级比defaultConfig中高
+  const { 
+    defaultContent = [], 
+    onCreated,
+    defaultHtml = '',
+    value = '',
+    readOnly,
+    autoFocus,
+    scroll,
+    maxLength,
+    onChange,
+    onBlur,
+    onFocus,
+    onMaxLength,
+    placeholder,
+    defaultConfig = {},
+    mode = 'default',
+    style = {}
+  } = props
   const ref = useRef<HTMLDivElement>(null)
   const [editor, setEditor] = useState<IDomEditor | null>(null)
   const [curValue, setCurValue] = useState('')
 
   const handleCreated = (editor: IDomEditor) => {
-    // 组件属性 onCreated
-    if (onCreated) onCreated(editor)
-
-    // 编辑器 配置 onCreated
     const { onCreated: onCreatedFromConfig } = defaultConfig
-    if (onCreatedFromConfig) onCreatedFromConfig(editor)
+    // 组件属性优先
+    if (onCreated) {
+      // 组件属性 onCreated
+      onCreated(editor)
+    } else if (onCreatedFromConfig) {
+      // 编辑器 配置 onCreated
+      onCreatedFromConfig(editor)
+    }
   }
 
   const handleChanged = (editor: IDomEditor) => {
     setCurValue(editor.getHtml()) // 记录当前 html 值
+    const { onChange: onChangeFromConfig } = defaultConfig
 
     // 组件属性 onChange
-    if (onChange) onChange(editor)
-
-    // 编辑器 配置 onChange
-    const { onChange: onChangeFromConfig } = defaultConfig
-    if (onChangeFromConfig) onChangeFromConfig(editor)
+    if (onChange) {
+      onChange(editor)
+    } else if(onChangeFromConfig) {
+      // 编辑器 配置 onChange
+      onChangeFromConfig(editor)
+    }
   }
 
   const handleDestroyed = (editor: IDomEditor) => {
@@ -49,6 +71,36 @@ function EditorComponent(props: Partial<IProps>) {
     if(onDestroyed) {
       onDestroyed(editor)
     }
+  }
+
+  const handleBlur = (editor: IDomEditor) => {
+    const { onBlur: onBlurFromConfig } = defaultConfig
+    if(onBlur) {
+      onBlur(editor)
+    } else if(onBlurFromConfig) {
+      // 来自defaultConfig属性 onBlur
+      onBlurFromConfig(editor)
+    }
+  }
+
+  const handleFocus = (editor: IDomEditor) => {
+    const { onFocus: onFocusFromConfig } = defaultConfig
+    if(onFocus) {
+      onFocus(editor)
+    } else if(onFocusFromConfig) {
+      // 来自defaultConfig属性 onFocus
+      onFocusFromConfig(editor)
+    }
+  }
+
+  const handleMaxLength = (editor: IDomEditor) => {
+    const { onMaxLength: onMaxLengthFromConfig } = defaultConfig
+    if(onMaxLength){
+      onMaxLength(editor)
+    } else if(onMaxLengthFromConfig) {
+      // 来自defaultConfig属性 onMaxLength
+      onMaxLengthFromConfig(editor)
+    } 
   }
 
   // value 变化，重置 HTML
@@ -72,8 +124,16 @@ function EditorComponent(props: Partial<IProps>) {
       selector: ref.current,
       config: {
         ...defaultConfig,
+        placeholder,
+        readOnly,
+        autoFocus,
+        scroll, 
+        maxLength,
         onCreated: handleCreated,
         onChange: handleChanged,
+        onBlur: handleBlur,
+        onFocus: handleFocus,
+        onMaxLength: handleMaxLength,
         onDestroyed: handleDestroyed,
       },
       content: defaultContent,
@@ -81,7 +141,7 @@ function EditorComponent(props: Partial<IProps>) {
       mode,
     })
     setEditor(newEditor)
-  }, [editor])
+  }, [editor, handleChanged])
 
   return <div style={style} ref={ref}></div>
 }

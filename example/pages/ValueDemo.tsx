@@ -53,7 +53,15 @@ function Basic() {
                     defaultConfig={editorConfig}
                     onCreated={setEditor}
                     value={html}
-                    onChange={editor => setHtml(editor.getHtml())}
+                    // placeholder={'测试下'}
+                    // readOnly={true}
+                    // maxLength={50}
+                    // onMaxLength={() => {
+                    //     alert('max length')
+                    // }}
+                    // onFocus={editor => {
+                    //     console.log('onFocus')
+                    // }}
                     style={{ height: '500px' }}
                 />
             </div>

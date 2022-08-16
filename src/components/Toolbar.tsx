@@ -11,7 +11,7 @@ interface IProps {
   defaultConfig?: Partial<wangEditor.IToolbarConfig>
   mode?: string
   style?: object
-  className?: string | undefined;
+  className?: string
 }
 
 function ToolbarComponent(props: IProps) {

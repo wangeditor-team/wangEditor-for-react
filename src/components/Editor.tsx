@@ -59,38 +59,7 @@ function EditorComponent(props: Partial<IProps>) {
     if (value === curValue) return // 如果和当前 html 值相等，则忽略
 
     // ------ 重新设置 HTML ------
-
-    // 记录编辑器当前状态
-    const isEditorDisabled = editor.isDisabled()
-    const isEditorFocused = editor.isFocused()
-    const editorSelectionStr = JSON.stringify(editor.selection)
-
-    // 删除并重新设置 HTML
-    editor.enable()
-    editor.focus()
-    editor.select([])
-    editor.deleteFragment()
-    // @ts-ignore
-    SlateTransforms.setNodes(editor, { type: 'paragraph' }, { mode: 'highest' })
-    editor.dangerouslyInsertHtml(value)
-
-    // 恢复编辑器状态
-    if (!isEditorFocused) {
-      editor.deselect()
-      editor.blur()
-    }
-    if (isEditorDisabled) {
-      editor.deselect()
-      editor.disable()
-    }
-
-    if(editor.isFocused()) {
-      try {
-        editor.select(JSON.parse(editorSelectionStr)) // 选中原来的位置
-      } catch (ex) {
-        editor.select(SlateEditor.start(editor, [])) // 选中开始
-      }
-    }
+    editor.setHtml(value)
 
   }, [value])
 

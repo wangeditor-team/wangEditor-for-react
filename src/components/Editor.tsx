@@ -13,6 +13,7 @@ interface IProps extends Omit<Partial<IEditorConfig>, "customAlert" | "decorate"
   defaultConfig: Partial<IEditorConfig>
   mode?: string
   style?: React.CSSProperties
+  className?: string
 }
 
 function EditorComponent(props: Partial<IProps>) {
@@ -35,7 +36,8 @@ function EditorComponent(props: Partial<IProps>) {
     placeholder,
     defaultConfig = {},
     mode = 'default',
-    style = {}
+    style = {},
+    className
   } = props
   const ref = useRef<HTMLDivElement>(null)
   const [editor, setEditor] = useState<IDomEditor | null>(null)
@@ -138,9 +140,9 @@ function EditorComponent(props: Partial<IProps>) {
       onMaxLength: handleMaxLength,
       onDestroyed: handleDestroyed,
     }
-    
+
     // 清除未设置的编辑器配置
-    for(let config in editorConfig) {
+    for (let config in editorConfig) {
       if (!editorConfig[config]) delete editorConfig[config]
     }
 
@@ -154,7 +156,7 @@ function EditorComponent(props: Partial<IProps>) {
     setEditor(newEditor)
   }, [editor])
 
-  return <div style={style} ref={ref}></div>
+  return <div style={style} ref={ref} className={className}></div>
 }
 
 export default EditorComponent

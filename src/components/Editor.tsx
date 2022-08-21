@@ -4,7 +4,7 @@
  */
 
 import React, { useRef, useEffect, useState } from 'react'
-import {SlateDescendant, IEditorConfig, createEditor, IDomEditor, SlateEditor, SlateTransforms } from '@wangeditor/editor'
+import { SlateDescendant, IEditorConfig, createEditor, IDomEditor } from '@wangeditor/editor'
 
 interface IProps extends Omit<Partial<IEditorConfig>, "customAlert" | "decorate" | "customPaste" | "hoverbarKeys" | "EXTEND_CONF" | "MENU_CONF"> {
   defaultContent?: SlateDescendant[]
@@ -18,8 +18,8 @@ interface IProps extends Omit<Partial<IEditorConfig>, "customAlert" | "decorate"
 function EditorComponent(props: Partial<IProps>) {
   // 通过props传递时
   // readOnly/autoFocus/maxLength/scroll/配置的优先级比defaultConfig中高
-  const { 
-    defaultContent = [], 
+  const {
+    defaultContent = [],
     onCreated,
     defaultHtml = '',
     value = '',
@@ -31,6 +31,7 @@ function EditorComponent(props: Partial<IProps>) {
     onBlur,
     onFocus,
     onMaxLength,
+    onDestroyed,
     placeholder,
     defaultConfig = {},
     mode = 'default',
@@ -59,25 +60,27 @@ function EditorComponent(props: Partial<IProps>) {
     // 组件属性 onChange
     if (onChange) {
       onChange(editor)
-    } else if(onChangeFromConfig) {
+    } else if (onChangeFromConfig) {
       // 编辑器 配置 onChange
       onChangeFromConfig(editor)
     }
   }
 
   const handleDestroyed = (editor: IDomEditor) => {
-    const { onDestroyed } = defaultConfig
+    const { onDestroyed: onDestroyedFromConfig } = defaultConfig
     setEditor(null)
-    if(onDestroyed) {
+    if (onDestroyed) {
       onDestroyed(editor)
+    } else if (onDestroyedFromConfig) {
+      onDestroyedFromConfig(editor)
     }
   }
 
   const handleBlur = (editor: IDomEditor) => {
     const { onBlur: onBlurFromConfig } = defaultConfig
-    if(onBlur) {
+    if (onBlur) {
       onBlur(editor)
-    } else if(onBlurFromConfig) {
+    } else if (onBlurFromConfig) {
       // 来自defaultConfig属性 onBlur
       onBlurFromConfig(editor)
     }
@@ -85,9 +88,9 @@ function EditorComponent(props: Partial<IProps>) {
 
   const handleFocus = (editor: IDomEditor) => {
     const { onFocus: onFocusFromConfig } = defaultConfig
-    if(onFocus) {
+    if (onFocus) {
       onFocus(editor)
-    } else if(onFocusFromConfig) {
+    } else if (onFocusFromConfig) {
       // 来自defaultConfig属性 onFocus
       onFocusFromConfig(editor)
     }
@@ -95,12 +98,12 @@ function EditorComponent(props: Partial<IProps>) {
 
   const handleMaxLength = (editor: IDomEditor) => {
     const { onMaxLength: onMaxLengthFromConfig } = defaultConfig
-    if(onMaxLength){
+    if (onMaxLength) {
       onMaxLength(editor)
-    } else if(onMaxLengthFromConfig) {
+    } else if (onMaxLengthFromConfig) {
       // 来自defaultConfig属性 onMaxLength
       onMaxLengthFromConfig(editor)
-    } 
+    }
   }
 
   // value 变化，重置 HTML
@@ -120,28 +123,36 @@ function EditorComponent(props: Partial<IProps>) {
     // 防止重复渲染 当编辑器已经创建就不在创建了
     if (ref.current?.getAttribute('data-w-e-textarea')) return
 
+    // 编辑器配置
+    const editorConfig = {
+      ...defaultConfig,
+      placeholder: placeholder ? placeholder : defaultConfig.placeholder,
+      readOnly: readOnly ? readOnly : defaultConfig.readOnly,
+      autoFocus: autoFocus ? autoFocus : defaultConfig.autoFocus,
+      scroll: scroll ? scroll : defaultConfig.scroll,
+      maxLength: maxLength ? maxLength : defaultConfig.maxLength,
+      onCreated: handleCreated,
+      onChange: handleChanged,
+      onBlur: handleBlur,
+      onFocus: handleFocus,
+      onMaxLength: handleMaxLength,
+      onDestroyed: handleDestroyed,
+    }
+    
+    // 清除未设置的编辑器配置
+    for(let config in editorConfig) {
+      if (!editorConfig[config]) delete editorConfig[config]
+    }
+
     const newEditor = createEditor({
       selector: ref.current,
-      config: {
-        ...defaultConfig,
-        placeholder,
-        readOnly,
-        autoFocus,
-        scroll, 
-        maxLength,
-        onCreated: handleCreated,
-        onChange: handleChanged,
-        onBlur: handleBlur,
-        onFocus: handleFocus,
-        onMaxLength: handleMaxLength,
-        onDestroyed: handleDestroyed,
-      },
+      config: editorConfig,
       content: defaultContent,
       html: defaultHtml || value,
       mode,
     })
     setEditor(newEditor)
-  }, [editor, handleChanged])
+  }, [editor])
 
   return <div style={style} ref={ref}></div>
 }

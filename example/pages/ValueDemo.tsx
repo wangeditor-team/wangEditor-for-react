@@ -53,6 +53,7 @@ function Basic() {
                     defaultConfig={editorConfig}
                     onCreated={setEditor}
                     value={html}
+                    onChange={editor => setHtml(editor.getHtml())}
                     // placeholder={'测试下'}
                     // readOnly={true}
                     // maxLength={50}

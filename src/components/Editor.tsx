@@ -59,7 +59,11 @@ function EditorComponent(props: Partial<IProps>) {
     if (value === curValue) return // 如果和当前 html 值相等，则忽略
 
     // ------ 重新设置 HTML ------
-    editor.setHtml(value)
+    try {
+      editor.setHtml(value)
+    } catch (error) {
+      console.error(error)
+    }
 
   }, [value])
 

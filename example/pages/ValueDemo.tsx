@@ -11,10 +11,11 @@ function Basic() {
     const [editor, setEditor] = useState<IDomEditor | null>(null)
     const [html, setHtml] = useState('<p>hello</p>')
 
+    const [max, setMax]  = useState(15)
     useEffect(() => {
         // 模拟 ajax 异步设置 value
         setTimeout(() => {
-            setHtml('<p>hello&nbsp;world</p>') 
+            setHtml('<p></p><img src="https://zfztrade.oss-cn-hangzhou.aliyuncs.com/0a1076cbd089457d8bf48113bcda79f1.png"><p></p>') 
         }, 1500)
     }, [])
 
@@ -27,6 +28,11 @@ function Basic() {
     const toolbarConfig = {
         // 工具栏配置
     }
+
+    const handleMax = () => {
+        console.log(max)
+        setMax(max + 1)
+      }
 
     useEffect(() => {
         // 组件销毁时，销毁 editor
@@ -53,10 +59,13 @@ function Basic() {
                     defaultConfig={editorConfig}
                     onCreated={setEditor}
                     value={html}
+                    key={max}
                     onChange={editor => setHtml(editor.getHtml())}
                     style={{ height: '500px' }}
                 />
             </div>
+
+            <button onClick={handleMax}>test</button>
             <div>
                 <textarea
                     value={html}

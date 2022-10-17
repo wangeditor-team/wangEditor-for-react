@@ -9,6 +9,7 @@ import { Editor, Toolbar } from '../../src/index'
 
 function Basic() {
   const [editor, setEditor] = useState<IDomEditor | null>(null)
+  const [max, setMax]  = useState(15)
 
   // ----------------------- editor config -----------------------
   const editorConfig: Partial<IEditorConfig> = {}
@@ -42,6 +43,11 @@ function Basic() {
     }
   }, [editor])
 
+  const handleMax = () => {
+    console.log(max)
+    setMax(max + 1)
+  }
+
   return (
     <React.Fragment>
       {/* data-testid 用于单元测试 */}
@@ -60,9 +66,11 @@ function Basic() {
           defaultContent={defaultContent}
           // defaultHtml={defaultHtml}
           mode="simple"
+          key={max}
           style={{ height: '500px' }}
         />
       </div>
+      <button onClick={handleMax}>test</button>
     </React.Fragment>
   )
 }
